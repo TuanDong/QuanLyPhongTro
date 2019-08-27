@@ -60,10 +60,6 @@
                                     <button class="btn btn-xs btn-danger">
                                         <i class="ace-icon fa fa-trash-o bigger-120"></i>
                                     </button>
-
-                                    <button class="btn btn-xs btn-warning">
-                                        <i class="ace-icon fa fa-flag bigger-120"></i>
-                                    </button>
                                 </div>
 
                                 <div class="hidden-md hidden-lg">

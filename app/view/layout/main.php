@@ -97,7 +97,7 @@
 						<i class="ace-icon fa fa-signal"></i>
 					</button>
 
-					<button class="btn btn-info">
+					<button class="btn btn-info" href="#my-modal" data-toggle="modal">
 						<i class="ace-icon fa fa-pencil"></i>
 					</button>
 
@@ -122,7 +122,7 @@
 			</div><!-- /.sidebar-shortcuts -->
 
 			<ul class="nav nav-list">
-				<li class="<?= count(explode('/',ltrim($_SERVER['REQUEST_URI'],'/'))) ==1 ? 'active' : '' ;?>">
+				<li class="<?= count(explode('/', ltrim($_SERVER['REQUEST_URI'], '/'))) == 1 ? 'active' : ''; ?>">
 					<a href="<?= url('/'); ?>" text="">
 						<i class="menu-icon fa fa-tachometer"></i>
 						<span class="menu-text"> Danh Sách Phòng Thuê </span>
@@ -130,14 +130,14 @@
 
 					<b class="arrow"></b>
 				</li>
-				<li class="<?= (count(explode('/',ltrim($_SERVER['REQUEST_URI'],'/'))) >= 2 && (explode('/',ltrim($_SERVER['REQUEST_URI'],'/')))[0] == 'DanhsachnguoithueController' ) ? 'active' : '' ; ?>">
+				<li class="<?= (count(explode('/', ltrim($_SERVER['REQUEST_URI'], '/'))) >= 2 && (explode('/', ltrim($_SERVER['REQUEST_URI'], '/')))[0] == 'DanhsachnguoithueController') ? 'active' : ''; ?>">
 					<a href="<?= url('DanhsachnguoithueController'); ?>">
 						<i class="menu-icon fa fa-tachometer"></i>
 						<span class="menu-text"> Danh Sách Người Thuê </span>
 					</a>
 					<b class="arrow"></b>
 				</li>
-				<li class="<?= (count(explode('/',ltrim($_SERVER['REQUEST_URI'],'/'))) >= 2 && (explode('/',ltrim($_SERVER['REQUEST_URI'],'/')))[0] == 'DanhsachphongthueController' ) ? 'active' : '' ; ?>">
+				<li class="<?= (count(explode('/', ltrim($_SERVER['REQUEST_URI'], '/'))) >= 2 && (explode('/', ltrim($_SERVER['REQUEST_URI'], '/')))[0] == 'DanhsachphongthueController') ? 'active' : ''; ?>">
 					<a href="<?= url('DanhsachphongthueController'); ?>">
 						<i class="menu-icon fa fa-tachometer"></i>
 						<span class="menu-text"> Danh Sách Phòng Cho Thuê </span>
@@ -150,7 +150,7 @@
 				<i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
 			</div>
 		</div>
-
+		
 		<div class="main-content">
 			<div class="main-content-inner">
 				<div class="page-content">
@@ -162,6 +162,32 @@
 						</div><!-- /.col -->
 					</div><!-- /.row -->
 				</div><!-- /.page-content -->
+			</div>
+			<!-- Modal price water electric -->
+			<div id="my-modal" class="modal fade" tabindex="-1">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							<h3 class="smaller lighter blue no-margin">Giá Điện Nước</h3>
+						</div>
+
+						<div class="modal-body">
+							
+						</div>
+
+						<div class="modal-footer">
+							<button class="btn btn-sm btn-danger pull-right" data-dismiss="modal">
+								<i class="ace-icon fa fa-times"></i>
+								Đóng
+							</button>
+							<button class="btn btn-sm btn-info pull-right" style="margin-right: 2%;">
+								<i class="ace-icon fa fa-floppy-o"></i>
+								Lưu
+							</button>
+						</div>
+					</div><!-- /.modal-content -->
+				</div><!-- /.modal-dialog -->
 			</div>
 		</div><!-- /.main-content -->
 
