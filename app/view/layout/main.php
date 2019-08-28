@@ -5,7 +5,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<meta charset="utf-8" />
 	<title><?= $this->siteTitle(); ?></title>
-
+	<link rel="shortcut icon" type="image/png" href="#"/>
 	<meta name="description" content="overview &amp; stats" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
@@ -165,7 +165,7 @@
 			</div>
 			<!-- Modal price water electric -->
 			<div id="my-modal" class="modal fade" tabindex="-1">
-				<div class="modal-dialog">
+				<div class="modal-dialog modal-lg">
 					<div class="modal-content">
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -173,7 +173,21 @@
 						</div>
 
 						<div class="modal-body">
-							
+							<div style="margin-bottom: 2%;">
+								<input type="hidden" id="id-electric-water" value="<?= Session::get('PRICE')[0]->ID ; ?>" >
+								<label class="col-sm-3 control-label no-padding-right">Giá Điện</label>
+								<span class="input-icon">
+									<input type="text" id="price-electric" style="text-align: end;" value="<?= number_format(Session::get('PRICE')[0]->PRICE_ELECTRIC) ;?>">
+									<i class="ace-icon fa fa-leaf green"></i>
+								</span>
+							</div>
+							<div>
+								<label class="col-sm-3 control-label no-padding-right">Giá Nước</label>
+								<span class="input-icon ">
+									<input type="text" id="price-water" style="text-align: end;" value="<?= number_format(Session::get('PRICE')[0]->PRICE_WATER) ;?>">
+									<i class="ace-icon fa fa-leaf blue"></i>
+								</span>
+							</div>
 						</div>
 
 						<div class="modal-footer">
@@ -181,7 +195,7 @@
 								<i class="ace-icon fa fa-times"></i>
 								Đóng
 							</button>
-							<button class="btn btn-sm btn-info pull-right" style="margin-right: 2%;">
+							<button class="btn btn-sm btn-info pull-right" style="margin-right: 2%;" onclick="UpdatePrice();">
 								<i class="ace-icon fa fa-floppy-o"></i>
 								Lưu
 							</button>
@@ -229,6 +243,31 @@
 	<!-- ace scripts -->
 	<!-- <script src="assets/js/ace-elements.min.js"></script> -->
 	<script src="<?= asset('assets/js/ace.min.js'); ?>"></script>
+	<script>
+		function UpdatePrice() {
+			var priceElectric =  parseFloat( $('#price-electric').val().replace(/,/g,''));
+			var priceWater =  parseFloat( $('#price-water').val().replace(/,/g,''));
+			var id = $('#id-electric-water').val();
+			$.ajax({
+				method: "POST",
+				url:'/DanhsachphongController/updatePrice',
+				data:{
+					id : id,
+					priceElectric :priceElectric,
+					priceWater: priceWater
+				}
+			}).done (function (data){
+				if (data == 'true') {
+					$('#my-modal').modal('hide');
+					alert('Sửa Thành Công... !');
+				} else {
+					alert('Không Thành Công... !');
+				}
+			}).false( function (error) {
+				alert('Không Thành Công... !');
+			});
+		}
+	</script>
 </body>
 
 </html>

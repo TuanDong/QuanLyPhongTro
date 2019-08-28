@@ -3,7 +3,8 @@
 	//define('URL', '113.165.167.146');
 	
 	// set connect database
-	define('DB_HOST', '113.165.167.146');
+	// define('DB_HOST', '113.165.167.146');
+	define('DB_HOST', '127.0.0.1');
 	define('DB_NAME', 'qlpt_db');
 	define('DB_USERNAME', 'root');
 	define('DB_PASSWORD', '');

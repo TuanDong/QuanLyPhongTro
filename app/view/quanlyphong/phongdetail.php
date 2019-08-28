@@ -1,0 +1,50 @@
+<?php $this->setSiteTitle('Chi Tiết Phòng'); ?>
+
+<?php $this->start('body'); ?>
+<div class="row">
+    <div class="col-xs-12">
+        <h1 class="header smaller lighter blue">MÔ TẢ PHÒNG TRỌ</h1>
+
+        <div class="clearfix">
+            <div class="pull-right tableTools-container"></div>
+        </div>
+        <div class="table-header" style="text-align: center; line-height: 50px;">
+            <span class="label label-xlg label-yellow arrowed-in-right arrowed-in" style="font-weight: bold; font-size: 15px; color: #D15B47;"><?= $roomObj->NAME_ROOM ;?></span> 
+        </div>
+        <div class="row header">
+            <form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span class="label label-xlg label-success arrowed">Giá Phòng:</span></label>
+                    <div class="col-sm-9">
+                    <input type="text" disabled value="<?= number_format( $roomObj->PRICE) ;?>" class="col-xs-10 col-sm-5">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span class="label label-xlg label-success arrowed">Số Điện:</span></label>
+                    <div class="col-sm-9">
+                    <input type="text" disabled value="<?= number_format( $roomObj->NUMBER_ELECTRIC) ;?>" class="col-xs-10 col-sm-5">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span class="label label-xlg label-success arrowed">Số Nước:</span></label>
+                    <div class="col-sm-9">
+                    <input type="text" disabled value="<?= number_format( $roomObj->NUMBER_WATER) ;?>" class="col-xs-10 col-sm-5">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span class="label label-xlg label-success arrowed">Trạng Thái:</span></label>
+                    <div class="col-sm-9">
+                        <div class="checkbox">
+                            <label class="block">
+                                <input name="form-field-checkbox" <?= $roomObj->STATUS != 0 ? 'checked' : ''; ?> type="checkbox" class="ace input-lg">
+                                <span class="lbl bigger-120"> Đã Thuê</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <?= var_dump($roomObj, $ID); ?>
+</div>
+<?php $this->end(); ?>

@@ -39,7 +39,7 @@
                                 </div>
                             </div>
                             <div class="widget-toolbox padding-8 clearfix">
-                                <button class="btn btn-xs btn-primary pull-right" style="border-radius: 6px;">
+                                <button class="btn btn-xs btn-primary pull-right <?= $room->STATUS != 0 ? '' : 'disabled' ?>" style="border-radius: 6px;">
                                     <i class="ace-icon fa fa-credit-card icon-on-right"></i>
                                     <span class="bigger-110">Tính Tiền</span>
                                 </button>

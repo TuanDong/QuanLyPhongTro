@@ -52,10 +52,10 @@
                             <td>
                                 <div class="hidden-sm hidden-xs btn-group">
                                     <button class="btn btn-xs btn-success">
-                                        <i class="ace-icon fa fa-eye bigger-120"></i>
+                                        <a href="<?= url('DanhsachphongController/romdetail',[$room->ID]);?>" style="color: #fff;"><i class="ace-icon fa fa-eye bigger-120"></i></a>
                                     </button>
 
-                                    <button class="btn btn-xs btn-info">
+                                    <button class="btn btn-xs btn-info" >
                                         <i class="ace-icon fa fa-pencil bigger-120"></i>
                                     </button>
 
@@ -144,5 +144,8 @@ $('#dynamic-table')
         style: 'single'
     }
 });
+function clickTD() {
+    console.log('click');
+}
 </script>
 <?php $this->end(); ?>

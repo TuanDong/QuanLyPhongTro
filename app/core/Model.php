@@ -36,7 +36,7 @@ class Model
     }
     public function findByID($id) {
         $primary_key = $this->_db->get_key($this->table);
-        $resultsQuery = $this->_db->findFirst($this->table,['condition'=>[$primary_key.' = ?'],'bind' =>[$id]]);
+        $resultsQuery = $this->findFirst(['conditions'=>[$primary_key.' = ?'],'bind' =>[$id]]);
         return $resultsQuery;
     }
 
