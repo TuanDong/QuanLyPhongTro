@@ -14,6 +14,7 @@ class Model
         $columns = $this->_db->get_columns($this->table);
         foreach ($columns as $column) {
             $this->_columnName[] = $column->Field;
+            $this->{$column->Field} = null;
         }
 
     }
@@ -48,7 +49,7 @@ class Model
 
     public function delete($id='')
     {
-        if ($id == '' || $this->id == '') return false;
+        if ($id == '' && $this->id == '') return false;
         $id = ($id == '')? $this->id:$id;
         return $this->_db->delete($this->table,$id);
     }

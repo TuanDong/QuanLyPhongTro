@@ -101,13 +101,13 @@
 						<i class="ace-icon fa fa-pencil"></i>
 					</button>
 
-					<button class="btn btn-warning">
+					<!-- <button class="btn btn-warning">
 						<i class="ace-icon fa fa-users"></i>
 					</button>
 
 					<button class="btn btn-danger">
 						<i class="ace-icon fa fa-cogs"></i>
-					</button>
+					</button> -->
 				</div>
 
 				<div class="sidebar-shortcuts-mini">

@@ -12,13 +12,23 @@
             <div class="table-header">
                 BẢNG PHÒNG
                 <div style="float: right; margin:0% 2% 0 0;">
-                    <button class="btn btn-sm btn-success"> THÊM </button>
+                    <a href="<?= url('DanhsachphongController/addview');?>">
+                        <button class="btn btn-sm btn-success"> THÊM </button>
+                    </a>
                 </div>
             </div>
             <!-- div.table-responsive -->
 
             <!-- div.dataTables_borderWrap -->
             <div>
+                <?php 
+                    if (isset($error) || isset($success)) {
+                        echo '<div id="show-alert" class="alert '. (isset($error) ?'alert-danger' : 'alert-success').'">';
+                        echo '<button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button>';
+                        echo '<strong><i class="ace-icon fa '. (isset($error) ? 'fa-times' : 'fa-check').'"></i>'. (isset($error) ? ' Error !' : ' Success !');
+                        echo '</strong>'. (isset($error) ? $error : $success) .'<br></div>';
+                    }
+                ?>
                 <table id="dynamic-table" class="table table-striped table-bordered table-hover">
                     <thead>
                         <tr>
@@ -60,7 +70,9 @@
                                     </button>
 
                                     <button class="btn btn-xs btn-danger">
-                                        <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                        <a href="<?= url('DanhsachphongController/deleteRoom',[$room->ID]);?>" style="color: #fff;">
+                                            <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                        </a>
                                     </button>
                                 </div>
 
@@ -72,7 +84,7 @@
 
                                         <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
                                             <li>
-                                                <a href="#" class="tooltip-info" data-rel="tooltip" title="" data-original-title="View">
+                                                <a href="<?= url('DanhsachphongController/romdetail',[$room->ID]);?>" class="tooltip-info" data-rel="tooltip" title="" data-original-title="View">
                                                     <span class="blue">
                                                         <i class="ace-icon fa fa-eye bigger-120"></i>
                                                     </span>
@@ -110,6 +122,7 @@
     </div>
 </div>
 <script type="text/javascript">
+$('#show-alert').hide(5000);
 $('#dynamic-table')
 // .wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
 .DataTable({
@@ -140,9 +153,9 @@ $('#dynamic-table')
     //you may want to wrap the table inside a "div.dataTables_borderWrap" element
 
     // "iDisplayLength": 50
-    select: {
-        style: 'single'
-    }
+    // select: {
+    //     style: 'single'
+    // }
 });
 function clickTD() {
     console.log('click');

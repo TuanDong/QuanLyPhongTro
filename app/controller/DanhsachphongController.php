@@ -27,4 +27,31 @@ class DanhsachphongController extends Controller
         $roomObj = $room->findByID($id);
         $this->view('quanlyphong/phongdetail',['roomObj'=>$roomObj,'ID' =>$id]);
     }
+
+    public function deleteRoom($id)
+    {
+        $room = $this->model('PhongModel');
+        $results = $room->delete($id);
+        if ($results == 'true') {
+            $list_room = $room->get_all();
+            $this->view('quanlyphong/danhsachphong',['listRoom'=>$list_room,'success' => 'Xoá thành công']);
+        } else {
+            $list_room = $room->get_all();
+            $this->view('quanlyphong/danhsachphong',['listRoom'=>$list_room,'error' => 'Xoá không thành công']);
+        }
+        
+    }
+
+    public function addview()
+    {
+        $this->view('quanlyphong/addroom');
+    }
+
+    public function insertRoom()
+    {
+        $room = $this->model('PhongModel');
+        
+        var_dump($_POST['from-field-name-room']);
+
+    }
 }
