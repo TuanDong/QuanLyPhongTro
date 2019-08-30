@@ -3,7 +3,7 @@
 <?php $this->start('body'); ?>
 <div class="row">
     <div class="col-xs-12">
-        <h1 class="header smaller lighter blue">MÔ TẢ PHÒNG TRỌ</h1>
+        <h1 class="header smaller lighter blue">MÔ TẢ PHÒNG</h1>
 
         <div class="clearfix">
             <div class="pull-right tableTools-container"></div>
@@ -36,7 +36,7 @@
                     <div class="col-sm-9">
                         <div class="checkbox">
                             <label class="block">
-                                <input name="form-field-checkbox" <?= $roomObj->STATUS != 0 ? 'checked' : 'disabled'; ?> type="checkbox" class="ace input-lg">
+                                <input name="form-field-checkbox" <?= $roomObj->STATUS != 0 ? 'checked' : ''; ?> disabled type="checkbox" class="ace input-lg">
                                 <span class="lbl bigger-120"> Đã Thuê</span>
                             </label>
                         </div>

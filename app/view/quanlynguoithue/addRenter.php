@@ -1,9 +1,8 @@
-<?php $this->setSiteTitle('Thêm Phòng'); ?>
-
+<?php $this->setSiteTitle('Thông Tin Người Thuê'); ?>
 <?php $this->start('body'); ?>
 <div class="row">
     <div class="col-xs-12">
-        <h1 class="header smaller lighter blue"><?= isset($roomObj)? 'SỬA THÔNG TIN PHÒNG':'THÊM PHÒNG'; ?></h1>
+        <h1 class="header smaller lighter blue"><?= isset($roomObj)? 'SỬA THÔNG TIN PHÒNG':'THÊM NGƯỜI THUÊ'; ?></h1>
 
         <div class="clearfix">
             <div class="pull-right tableTools-container"></div>
@@ -23,31 +22,25 @@
             <form class="form-horizontal" action="<?= isset($roomObj)? url('DanhsachphongController/updateRoom') : url('DanhsachphongController/insertRoom'); ?>" method="post" role="form">
                 <?= isset($roomObj)? '<input type="hidden" name="from-field-id-room" value="'.$roomObj->ID.'">' :""; ?> 
                 <div class="form-group">
-                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span class="label label-xlg label-success arrowed">Tên Phòng:</span></label>
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span class="label label-xlg label-success arrowed">Tên Người Thuê:</span></label>
                     <div class="col-sm-9">
-                        <input type="text" name="from-field-name-room" <?= isset($roomObj)? "value='".$roomObj->NAME_ROOM."'" :"" ?> placeholder="Tên phòng" class="col-xs-10 col-sm-5">
+                        <input type="text" name="from-field-name-room" <?= isset($roomObj)? "value='".$roomObj->NAME_ROOM."'" :"" ?> placeholder="Tên người thuê phòng" class="col-xs-10 col-sm-5">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span class="label label-xlg label-success arrowed">Giá Phòng:</span></label>
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span class="label label-xlg label-success arrowed">SCMND:</span></label>
                     <div class="col-sm-9">
                         <input type="number" name="from-field-price-room" <?= isset($roomObj)? "value='".$roomObj->PRICE."'" :"" ?> placeholder="Giá phòng" class="col-xs-10 col-sm-5">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span class="label label-xlg label-success arrowed">Số Điện:</span></label>
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span class="label label-xlg label-success arrowed">Số Điện Thoại:</span></label>
                     <div class="col-sm-9">
                         <input type="number" name="from-field-number-electric" <?= isset($roomObj)? "value='".$roomObj->NUMBER_ELECTRIC."'" :"" ?> placeholder="Giá điện" class="col-xs-10 col-sm-5">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span class="label label-xlg label-success arrowed">Số Nước:</span></label>
-                    <div class="col-sm-9">
-                        <input type="number" name="from-field-number-water" <?= isset($roomObj)? "value='".$roomObj->NUMBER_WATER."'" :"" ?> placeholder="Giá nước" class="col-xs-10 col-sm-5">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span class="label label-xlg label-success arrowed">Mô Tả Phòng:</span></label>
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span class="label label-xlg label-success arrowed">Mô Tả Người Thuê:</span></label>
                     <div class="col-sm-9">
                         <div class="row col-xs-10 col-sm-5">
                             <textarea name="form-field-textarea" class="autosize-transition form-control" placeholder="Mô tả phòng" style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 52px;"><?= isset($roomObj)? $roomObj->DECRIPTION:"" ?></textarea>

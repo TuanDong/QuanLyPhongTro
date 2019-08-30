@@ -4,13 +4,13 @@
 <div class="row">
     <div class="row">
         <div class="col-xs-12">
-            <h1 class="header smaller lighter blue">DANH SÁCH PHÒNG TRONG DÃY TRỌ</h1>
+            <h1 class="header smaller lighter blue">DANH SÁCH PHÒNG TRỌ</h1>
 
             <div class="clearfix">
                 <div class="pull-right tableTools-container"></div>
             </div>
             <div class="table-header">
-                BẢNG PHÒNG
+                DANH SÁCH PHÒNG
                 <div style="float: right; margin:0% 2% 0 0;">
                     <a href="<?= url('DanhsachphongController/addview');?>">
                         <button class="btn btn-sm btn-success"> THÊM </button>
@@ -66,7 +66,7 @@
                                     </button>
 
                                     <button class="btn btn-xs btn-info" >
-                                        <i class="ace-icon fa fa-pencil bigger-120"></i>
+                                    <a href="<?= url('DanhsachphongController/editview',[$room->ID]);?>" style="color: #fff;"><i class="ace-icon fa fa-pencil bigger-120"></i></a>
                                     </button>
 
                                     <button class="btn btn-xs btn-danger">
@@ -92,7 +92,7 @@
                                             </li>
 
                                             <li>
-                                                <a href="#" class="tooltip-success" data-rel="tooltip" title="" data-original-title="Edit">
+                                                <a href="<?= url('DanhsachphongController/editview',[$room->ID]);?>" class="tooltip-success" data-rel="tooltip" title="" data-original-title="Edit">
                                                     <span class="green">
                                                         <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
                                                     </span>
@@ -100,7 +100,7 @@
                                             </li>
 
                                             <li>
-                                                <a href="#" class="tooltip-error" data-rel="tooltip" title="" data-original-title="Delete">
+                                                <a href="<?= url('DanhsachphongController/deleteRoom',[$room->ID]);?>" class="tooltip-error" data-rel="tooltip" title="" data-original-title="Delete">
                                                     <span class="red">
                                                         <i class="ace-icon fa fa-trash-o bigger-120"></i>
                                                     </span>
@@ -122,9 +122,8 @@
     </div>
 </div>
 <script type="text/javascript">
-$('#show-alert').hide(5000);
+setTimeout(function(){ $('#show-alert').hide();},3000);
 $('#dynamic-table')
-// .wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
 .DataTable({
     bAutoWidth: false,
     "aoColumns": [{
@@ -136,7 +135,7 @@ $('#dynamic-table')
         }
     ],
     "aaSorting": [],
-
+    "pageLength": 15,
 
     //"bProcessing": true,
     //"bServerSide": true,

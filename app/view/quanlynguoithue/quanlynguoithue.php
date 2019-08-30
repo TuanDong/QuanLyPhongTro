@@ -4,15 +4,17 @@
 <div class="row">
     <div class="row">
         <div class="col-xs-12">
-            <h1 class="header smaller lighter blue">DANH SÁCH NGƯỜI THUÊ PHÒNG</h1>
+            <h1 class="header smaller lighter blue">DANH SÁCH NGƯỜI THUÊ</h1>
 
             <div class="clearfix">
                 <div class="pull-right tableTools-container"></div>
             </div>
             <div class="table-header">
-                DANH SÁCH NGƯỜI THUÊ TRỌ
+                DANH SÁCH NGƯỜI THUÊ
                 <div style="float: right; margin:0% 2% 0 0;">
-                    <button class="btn btn-sm btn-success"> THÊM </button>
+                    <a href="<?= url('DanhsachnguoithueController/addRenter');?>">
+                        <button class="btn btn-sm btn-success"> THÊM </button>
+                    </a>
                 </div>
             </div>
             <!-- div.table-responsive -->
@@ -50,7 +52,9 @@
                             <td>
                                 <div class="hidden-sm hidden-xs btn-group">
                                     <button class="btn btn-xs btn-success">
-                                        <i class="ace-icon fa fa-eye bigger-120"></i>
+                                        <a href="<?= url('DanhsachnguoithueController/renterdetail',[$people->ID]); ?>" style="color: #fff;">
+                                            <i class="ace-icon fa fa-eye bigger-120"></i>
+                                        </a>
                                     </button>
 
                                     <button class="btn btn-xs btn-info">
