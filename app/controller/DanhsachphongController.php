@@ -71,12 +71,12 @@ class DanhsachphongController extends Controller
     public function updateRoom()
     {
         $room = $this->model('PhongModel');
-        // $filed = ['NAME_ROOM'=>$_POST['from-field-name-room'],'PRICE'=>$_POST['from-field-price-room'],'NUMBER_ELECTRIC'=>$_POST['from-field-number-electric'],'NUMBER_WATER'=>$_POST['from-field-number-water'],'DECRIPTION'=>$_POST['form-field-textarea'],'STATUS'=>0];
-        // $id = $_POST['from-field-id-room'];
-        // $result = $room->update($id,$filed);
-        $room->id = $_POST['from-field-id-room'];
-        $room->NAME_ROOM = $_POST['from-field-name-room'];
-        $result = $room->save();
+        $filed = ['NAME_ROOM'=>$_POST['from-field-name-room'],'PRICE'=>$_POST['from-field-price-room'],'NUMBER_ELECTRIC'=>$_POST['from-field-number-electric'],'NUMBER_WATER'=>$_POST['from-field-number-water'],'DECRIPTION'=>$_POST['form-field-textarea'],'STATUS'=>0];
+        $id = $_POST['from-field-id-room'];
+        $result = $room->update($id,$filed);
+        // $room->id = $_POST['from-field-id-room'];
+        // $room->NAME_ROOM = $_POST['from-field-name-room'];
+        // $result = $room->save();
         if ($result == 'true') {
             $list_room = $room->get_all();
             $this->view('quanlyphong/danhsachphong',['listRoom'=>$list_room,'success' => 'Sửa thông tin thành công']);

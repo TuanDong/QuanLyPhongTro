@@ -12,6 +12,8 @@
 	<!-- bootstrap & fontawesome -->
 	<link rel="stylesheet" href="<?= asset('assets/css/bootstrap.min.css'); ?>" />
 	<link rel="stylesheet" href="<?= asset('assets/font-awesome/4.5.0/css/font-awesome.min.css'); ?>" />
+	
+	<link rel="stylesheet" href="<?= asset('assets/css/bootstrap-datepicker3.min.css'); ?>" />
 
 	<!-- page specific plugin styles -->
 
@@ -36,6 +38,9 @@
 	<script src="<?= asset('assets/js/buttons.print.min.js'); ?>"></script>
 	<script src="<?= asset('assets/js/buttons.colVis.min.js'); ?>"></script>
 	<script src="<?= asset('assets/js/dataTables.select.min.js'); ?>"></script>
+
+	<script src="<?= asset('assets/js/bootstrap-datepicker.min.js'); ?>"></script>
+
 	<div id="navbar" class="navbar navbar-default ace-save-state">
 		<div class="navbar-container ace-save-state" id="navbar-container">
 			<div class="navbar-header pull-left">
@@ -237,13 +242,21 @@
 	</div><!-- /.main-container -->
 
 	<script src="<?= asset('assets/js/bootstrap.min.js'); ?>"></script>
-
 	<!-- page specific plugin scripts -->
 
 	<!-- ace scripts -->
 	<!-- <script src="assets/js/ace-elements.min.js"></script> -->
 	<script src="<?= asset('assets/js/ace.min.js'); ?>"></script>
 	<script>
+		var realDate = new Date();  
+		$(".date-picker").datepicker({
+			format: 'dd/mm/yyyy',
+			autoclose: true,
+		})
+		.next().on(ace.click_event, function() {
+			$(this).prev().focus();
+		});
+		$(".date-picker").datepicker('setDate', realDate);
 		function UpdatePrice() {
 			var priceElectric =  parseFloat( $('#price-electric').val().replace(/,/g,''));
 			var priceWater =  parseFloat( $('#price-water').val().replace(/,/g,''));

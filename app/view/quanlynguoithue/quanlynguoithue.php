@@ -21,6 +21,14 @@
 
             <!-- div.dataTables_borderWrap -->
             <div>
+                <?php 
+                    if (isset($error) || isset($success)) {
+                        echo '<div id="show-alert" class="alert '. (isset($error) ?'alert-danger' : 'alert-success').'">';
+                        echo '<button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button>';
+                        echo '<strong><i class="ace-icon fa '. (isset($error) ? 'fa-times' : 'fa-check').'"></i>'. (isset($error) ? ' Error !' : ' Success !');
+                        echo '</strong>'. (isset($error) ? $error : $success) .'<br></div>';
+                    }
+                ?>
                 <table id="dynamic-table" class="table table-striped table-bordered table-hover">
                     <thead>
                         <tr>
@@ -58,11 +66,15 @@
                                     </button>
 
                                     <button class="btn btn-xs btn-info">
-                                        <i class="ace-icon fa fa-pencil bigger-120"></i>
+                                        <a href="<?= url('DanhsachnguoithueController/updateview',[$people->ID]); ?>" style="color: #fff;">
+                                            <i class="ace-icon fa fa-pencil bigger-120"></i>
+                                        </a>
                                     </button>
 
                                     <button class="btn btn-xs btn-danger">
-                                        <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                        <a href="<?= url('DanhsachnguoithueController/deleteRenter',[$people->ID]); ?>" style="color: #fff;">
+                                            <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                        </a>
                                     </button>
                                 </div>
 
@@ -74,7 +86,7 @@
 
                                         <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
                                             <li>
-                                                <a href="#" class="tooltip-info" data-rel="tooltip" title="" data-original-title="View">
+                                                <a href="<?= url('DanhsachnguoithueController/renterdetail',[$people->ID]); ?>" class="tooltip-info" data-rel="tooltip" title="" data-original-title="View">
                                                     <span class="blue">
                                                         <i class="ace-icon fa fa-eye bigger-120"></i>
                                                     </span>
@@ -112,6 +124,7 @@
     </div>
 </div>
 <script type="text/javascript">
+setTimeout(function(){ $('#show-alert').hide();},3000);
 $('#dynamic-table')
 // .wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
 .DataTable({
