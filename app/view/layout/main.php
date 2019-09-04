@@ -276,7 +276,7 @@
 				} else {
 					alert('Không Thành Công... !');
 				}
-			}).false( function (error) {
+			}).fail( function (error) {
 				alert('Không Thành Công... !');
 			});
 		}
