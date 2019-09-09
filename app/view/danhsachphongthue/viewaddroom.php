@@ -1,8 +1,9 @@
-<?php $this->setSiteTitle('Thông Tin Người Thuê'); ?>
+<?php $this->setSiteTitle('Thông Tin Đăng Ký Thuê Trọ'); ?>
+
 <?php $this->start('body'); ?>
 <div class="row">
     <div class="col-xs-12">
-        <h1 class="header smaller lighter blue"><?= isset($renterObj)? 'SỬA THÔNG TIN NGƯỜI THUÊ':'THÊM NGƯỜI THUÊ'; ?></h1>
+        <h1 class="header smaller lighter blue">THÔNG TIN THUÊ PHÒNG</h1>
 
         <div class="clearfix">
             <div class="pull-right tableTools-container"></div>
@@ -19,44 +20,49 @@
                     echo '</strong>'. $error .'<br></div>';
                 }
             ?>
-            <form class="form-horizontal" action="<?= isset($renterObj)? url('DanhsachnguoithueController/updateRenter') : url('DanhsachnguoithueController/insertRenter'); ?>" method="post" role="form">
-                <?= isset($renterObj)? '<input type="hidden" name="from-field-id-renter" value="'.$renterObj->ID.'">' :""; ?> 
+            <form class="form-horizontal" action="<?= url('DanhsachphongthueController/rent'); ?>" method="post" role="form">
+                <input type="hidden" name="id-room" value="<?= $id_room; ?>">
+                <input type="hidden" name="number-electric" value="<?= $number_electric; ?>">
+                <input type="hidden" name="number-water" value="<?= $number_water; ?>">
+                <input type="hidden" name="id-page" value="<?= $page; ?>">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span class="label label-xlg label-success arrowed">Ngay Vào Trọ:</span></label>
+                    <div class="col-sm-9 ">
+                        <div class="input-group col-xs-10 col-sm-5">
+                            <input class="form-control date-picker" name="id-datepicker" type="text" data-provide="datepicker" >
+                            <span class="input-group-addon">
+                                <i class="fa fa-calendar bigger-110"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span class="label label-xlg label-success arrowed">Tên Người Thuê:</span></label>
                     <div class="col-sm-9">
-                        <input type="text" name="from-field-name-renter" <?= isset($renterObj)? "value='".$renterObj->Full_name."'" :"" ?> placeholder="Tên người thuê phòng" class="col-xs-10 col-sm-5">
+                        <input type="text" name="from-field-name-renter" placeholder="Tên người thuê phòng" class="col-xs-10 col-sm-5">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span class="label label-xlg label-success arrowed">SCMND:</span></label>
                     <div class="col-sm-9">
-                        <input type="number" name="from-field-scmnd" <?= isset($renterObj)? "value='".$renterObj->SCMND."'" :"" ?> placeholder="Số Chứng Minh Nhân Dân" class="col-xs-10 col-sm-5">
+                        <input type="number" name="from-field-scmnd" placeholder="Số Chứng Minh Nhân Dân" class="col-xs-10 col-sm-5">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span class="label label-xlg label-success arrowed">Số Điện Thoại:</span></label>
                     <div class="col-sm-9">
-                        <input type="number" name="from-field-number-phone" <?= isset($renterObj)? "value='".$renterObj->PhoneNumber."'" :"" ?> placeholder="Số Điện Thoại" class="col-xs-10 col-sm-5">
+                        <input type="number" name="from-field-number-phone" placeholder="Số Điện Thoại" class="col-xs-10 col-sm-5">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span class="label label-xlg label-success arrowed">Mô Tả Người Thuê:</span></label>
                     <div class="col-sm-9">
                         <div class="row col-xs-10 col-sm-5">
-                            <textarea name="form-field-textarea" class="autosize-transition form-control" placeholder="Thông Người Thuê" style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 52px;"><?= isset($renterObj)? $renterObj->Decription:"" ?></textarea>
+                            <textarea name="form-field-textarea" class="autosize-transition form-control" placeholder="Thông Người Thuê" style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 52px;"></textarea>
                         </div>
                         
                     </div>
                 </div>
-                <?php
-                if (isset($renterObj)) {
-                    echo '<div class="form-group">';
-                    echo '<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span class="label label-xlg label-success arrowed">Trạng Thái:</span></label>';
-                    echo '<div class="col-sm-9"> <div class="checkbox"><label class="block">';
-                    echo '<span class="lbl bigger-120" style="color: red;">'. ((isset($renterObj) && $renterObj->Status != "0")? 'Đang Thuê':'Chuyển Đi') . '</span>';
-                    echo '</label></div></div></div>';
-                }
-                ?>
                 <div class="clearfix form-actions">
                     <div class="col-md-offset-3 col-md-9">
                         <button class="btn btn-info" type="submit">
@@ -72,4 +78,4 @@
         </div>
     </div>
 </div>
-<?php $this->end(); ?>
+<?php $this->end();?>

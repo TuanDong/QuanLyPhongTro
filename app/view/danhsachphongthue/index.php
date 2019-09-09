@@ -1,5 +1,4 @@
 <?php $this->setSiteTitle('Quản Lý Thuê Trọ'); ?>
-
 <?php $this->start('body'); ?>
 <div class="row">
     <div class="row">
@@ -13,46 +12,59 @@
                 DANH SÁCH PHÒNG TRỌ ĐÃ THUÊ
             </div>
             <!-- div.table-responsive -->
-
             <!-- div.dataTables_borderWrap -->
             <div style="margin-top: 1%;">
-                <?php
-                var_dump($listRenterRoom);
-                foreach ($listRenterRoom as $key => $room) {
-                    ?>
+                <?php 
+                    if (isset($error) || isset($success)) {
+                        echo '<div id="show-alert" class="alert '. (isset($error) ?'alert-danger' : 'alert-success').'">';
+                        echo '<button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button>';
+                        echo '<strong><i class="ace-icon fa '. (isset($error) ? 'fa-times' : 'fa-check').'"></i>'. (isset($error) ? ' Error !' : ' Success !');
+                        echo '</strong>'. (isset($error) ? $error : $success) .'<br></div>';
+                    }
+                    foreach ($listRenterRoom as $key => $room) {
+                ?>
                 <div class="col-xs-12 col-sm-3 widget-container-col" style="margin-bottom: 2%;">
                     <div class="widget-box">
-                        <div class="widget-header">
-
-                            <h4 class="widget-title smaller" style="font-weight: bold;"> <i class="ace-icon fa fa-home align-bottom bigger-180"></i> <?= $room->NAME_ROOM ?></h4>
-                            <div class="widget-toolbar">
-                                <span class="label label-lg arrowed arrowed-right <?= $room->STATUS != 0 ? 'label-primary' : 'label-danger'; ?>"><i class="ace-icon fa fa-bookmark align-top bigger-120"></i></span>
-                            </div>
-                        </div>
-
-                        <div class="widget-body">
-                            <div class="widget-main padding-6">
-                                <div class="alert alert-info">
-                                    <span class="label label-success arrowed"><i class="ace-icon fa fa-book bigger-120"></i> Tên Người Thuê:</span><span> <?= $room->Status == 1 ? $room->Full_name : '';?></span> <br>
-                                    <span class="label label-success arrowed"><i class="ace-icon fa fa-book bigger-120"></i> Tiền Phòng:</span><span> <?= number_format($room->PRICE);?></span> <br>
-                                    <span class="label label-success arrowed"><i class="ace-icon fa fa-book bigger-120"></i> Số Điện:</span><span> <?= $room->NUMBER_ELECTRIC;?></span> <br>
-                                    <span class="label label-success arrowed"><i class="ace-icon fa fa-book bigger-120"></i> Số Nước:</span><span> <?= $room->NUMBER_WATER;?></span> <br>
+                        <form method="post" action="<?= $room->STATUS != 0 ? url('DanhsachphongthueController/leaver_room') : '' ;?>">
+                            <input type="hidden" name="id_room" value="<?= $room->ID; ?>" >
+                            <input type="hidden" name="id_renter" value="<?= $room->ID_RENTER; ?>" >
+                            <input type="hidden" name="room_rentID" value="<?= $room->ROOM_RENT_ID; ?>" >
+                            <input type="hidden" name="page" value="<?= $curent_page; ?>" >
+                            <div class="widget-header">
+                                <h4 class="widget-title smaller" style="font-weight: bold;"> <i class="ace-icon fa fa-home align-bottom bigger-180"></i> <?= $room->NAME_ROOM ?></h4>
+                                <div class="widget-toolbar">
+                                    <span class="label label-lg arrowed arrowed-right <?= $room->STATUS != 0 ? 'label-primary' : 'label-danger'; ?>"><i class="ace-icon fa fa-bookmark align-top bigger-120"></i></span>
                                 </div>
                             </div>
-                            <div class="widget-toolbox padding-8 clearfix">
-                                <button class="btn btn-xs btn-primary pull-right " data-toggle="modal" data-target="#modal-caculator" onclick="setID(<?= $room->ID; ?> , <?= $room->NUMBER_ELECTRIC ; ?> , <?= $room->NUMBER_WATER ; ?> , <?= $room->PRICE ?> , <?= $room->ID_RENTER ?>);" style="border-radius: 6px;" >
-                                    <i class="ace-icon fa fa-credit-card icon-on-right bigger-120"></i>
-                                    <span class="bigger-110" style="color:<?= $room->STATUS != 0 ?'': 'red' ?> ;"><?= $room->STATUS != 0 ? 'Tính Tiền' : 'Thuê Phòng' ?></span>
-                                </button>
-                                <?php 
-                                    if ($room->STATUS != 0) {
-                                        echo '<button class="btn btn-xs btn-danger pull-right" style="margin-right: 5%;border-radius: 6px;" onclick="leaveRoom('.$room->ID.');" style="border-radius: 6px;" >';
-                                        echo '<i class="ace-icon fa fa-lock icon-on-right bigger-120"></i>';
-                                        echo '<span class="bigger-110"> Trả Phòng</span></button>';
-                                    }
-                                ?>
+
+                            <div class="widget-body">
+                                <div class="widget-main padding-6">
+                                    <div class="alert alert-info">
+                                        <span class="label label-success arrowed"><i class="ace-icon fa fa-book bigger-120"></i> Tên Người Thuê:</span><span> <?= $room->Status == 1 ? $room->Full_name : '';?></span> <br>
+                                        <span class="label label-success arrowed"><i class="ace-icon fa fa-book bigger-120"></i> Tiền Phòng:</span><span> <?= number_format($room->PRICE);?></span> <br>
+                                        <span class="label label-success arrowed"><i class="ace-icon fa fa-book bigger-120"></i> Số Điện:</span><span> <?= $room->NUMBER_ELECTRIC;?></span> <br>
+                                        <span class="label label-success arrowed"><i class="ace-icon fa fa-book bigger-120"></i> Số Nước:</span><span> <?= $room->NUMBER_WATER;?></span> <br>
+                                    </div>
+                                </div>
+                                <div class="widget-toolbox padding-8 clearfix">
+                                    <a class="btn btn-xs btn-primary pull-right " <?= $room->STATUS != 0 ? 'data-toggle="modal" data-target="#modal-caculator"' : 'href="'.url('DanhsachphongthueController/viewAdd',[$room->ID,$room->NUMBER_ELECTRIC,$room->NUMBER_WATER,$curent_page]).'"'; ?> style="border-radius: 6px;" >
+                                        <i class="ace-icon fa fa-credit-card icon-on-right bigger-120"></i>
+                                        <span class="bigger-110" style="color:<?= $room->STATUS != 0 ?'': 'red' ?> ;"><?= $room->STATUS != 0 ? 'Tính Tiền' : 'Thuê Phòng' ?></span>
+                                    </a>
+                                    <?php 
+                                        if ($room->STATUS != 0) {
+                                            echo '<button class="btn btn-xs btn-danger pull-right" type="submit" style="margin-right: 5%;border-radius: 6px;border-radius: 6px;" >';
+                                            echo '<i class="ace-icon fa fa-lock icon-on-right bigger-120"></i>';
+                                            echo '<span class="bigger-110"> Trả Phòng</span></button>';
+                                            // watch history pay room
+                                            echo '<a class="btn btn-xs btn-info pull-left" onclick="watch_history('. $room->ID .');" style="margin-right: 5%;border-radius: 6px;border-radius: 6px;" >';
+                                            echo '<i class="ace-icon fa fa-calendar icon-on-right bigger-120"></i>';
+                                            echo '<span class="bigger-110"> Lịch Sử Đóng Tiền</span></a>';
+                                        }
+                                    ?>
+                                </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
                 <?php } ?>
@@ -146,6 +158,42 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div>
+
+    <!--  modal history -->
+    <div id="modal-history" class="modal fade" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h3 class="smaller lighter blue no-margin">Lịch Sử Đóng Tiền Phòng</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="row" style="margin: 2%;">
+                        <table id="table-history" class="table table-striped table-bordered table-hover" style="padding:2%;">
+                            <thead>
+                            <tr>
+                                <th class="center">STT</th>
+                                <th>Ngày Đóng Tiền</th>
+                                <th>Mô Tả</th>
+                                <th>Tiền Đóng</th>
+                                <th>Tiền Khác</th>
+                                <th>Số Lượng Tháng</th>
+                            </tr>
+                        </thead>
+                        <tbody id="id-body">
+                        </tbody>
+                        </table>
+                    </div>     
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-sm btn-danger pull-right" data-dismiss="modal">
+                        <i class="ace-icon fa fa-times"></i>
+                        Đóng
+                    </button> 
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
 </div>
 <script>
     function setID(id,num_elec,num_water,price,idRenter) {
@@ -160,6 +208,7 @@
         $("#electric-old").val(num_elec);
         $("#room-price").val(price);
         $("#id-total").hide();
+        $("#id-btn-payall").show();
     }
     function payall() {
         id = $("#id-room").val();
@@ -173,7 +222,7 @@
         water_old = $("#water-old").val();
         electric_old = $("#electric-old").val();
         room_price = $("#room-price").val();
-        if (parseInt(number_electric) > parseInt(electric_old) && parseInt(number_water) > parseInt(water_old)) {
+        if (parseInt(number_electric) >= parseInt(electric_old) && parseInt(number_water) >= parseInt(water_old)) {
             $.ajax({
                 method: "POST",
                 url:'/DanhsachphongthueController/payAll',
@@ -191,10 +240,14 @@
                     idRenter: idRenter
                 },
             }).done (function (data){
-                var nd = "Tổng Cộng: " + data;
-                $("#id-total").show();
-                $("#id-label-total").text(nd.replace(/"/g, ""));
-                $("#id-btn-payall").hide();
+                if (data == 'false') {
+                    alert('Lỗi Tính Toán...!');
+                } else {
+                    var nd = "Tổng Cộng: " + data;
+                    $("#id-total").show();
+                    $("#id-label-total").text(nd.replace(/"/g, ""));
+                    $("#id-btn-payall").hide();
+                }
             }).fail(function (error) {
                 alert('Lỗi Tính Toán...!');
             });
@@ -202,8 +255,35 @@
             alert("Lỗi Số Điện Nước...!");
         }
     }
-    function leaveRoom (id) {
-        alert('chuyen thanh cong');
+    function watch_history (id_room) {
+        var table = $('#table-history').DataTable({ bAutoWidth: false, retrieve: true,});
+        $.ajax({
+            method: "POST",
+            url:'/DanhsachphongthueController/watch_history',
+            data: {
+                id_room: id_room               
+            },
+        }).done (function (data){
+                var stt =1;
+                var arr = JSON.parse(data);
+                table.clear().draw();
+                if (arr.length != 0) {
+                    arr.forEach(element => {
+                        table.row.add( [
+                            stt,
+                            element.DATE_PAY,
+                            element.DECRIPTION,
+                            element.PRICE,
+                            element.PAY_OTHER,
+                            element.MONTH
+                        ] ).draw();
+                        stt ++;
+                    });
+                }
+                $("#modal-history").modal('show');
+        }).fail(function (error) {
+            alert('Xem dữ liệu lỗi !');
+        });
     }
 </script>
 <?php $this->end();?>

@@ -22,6 +22,9 @@ class Model
     public function find($params) {
         $results = [];
         $resultsQuery = $this->_db->find($this->table,$params);
+        if (! $resultsQuery) {
+            return $results;
+        }
         foreach ($resultsQuery as $resutl) {
            $obj = new class{};
            foreach ($resutl as $key => $value) {
@@ -57,7 +60,8 @@ class Model
     public function update($id,$filed)
     {
         if ($id == '' ||empty( $filed)) return false;
-        return $this->_db->update($this->table,$id,$filed);
+        $results = $this->_db->update($this->table,$id,$filed);
+        return $results;
     }
     
     public function query($sql,$bind=[])

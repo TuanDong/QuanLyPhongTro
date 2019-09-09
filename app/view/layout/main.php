@@ -59,36 +59,9 @@
 							<img class="nav-user-photo" src="<?= asset('assets/images/avatars/user.jpg'); ?>" alt="Jason's Photo" />
 							<span class="user-info">
 								<small>Welcome,</small>
-								Jason
+								Admin
 							</span>
-
-							<i class="ace-icon fa fa-caret-down"></i>
 						</a>
-
-						<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-							<li>
-								<a href="#">
-									<i class="ace-icon fa fa-cog"></i>
-									Settings
-								</a>
-							</li>
-
-							<li>
-								<a href="profile.html">
-									<i class="ace-icon fa fa-user"></i>
-									Profile
-								</a>
-							</li>
-
-							<li class="divider"></li>
-
-							<li>
-								<a href="#">
-									<i class="ace-icon fa fa-power-off"></i>
-									Logout
-								</a>
-							</li>
-						</ul>
 					</li>
 				</ul>
 			</div>
@@ -257,6 +230,7 @@
 			$(this).prev().focus();
 		});
 		$(".date-picker").datepicker('setDate', realDate);
+		setTimeout(function(){ $('#show-alert').hide();},3000);
 		function UpdatePrice() {
 			var priceElectric =  parseFloat( $('#price-electric').val().replace(/,/g,''));
 			var priceWater =  parseFloat( $('#price-water').val().replace(/,/g,''));

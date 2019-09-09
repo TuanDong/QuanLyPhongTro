@@ -36,6 +36,8 @@
                             <th>Họ Tên Người Thuê</th>
                             <th>Số Chứng Minh Nhân Dân</th>
                             <th>Số Điện Thoại</th>
+                            <th>Ngày Thuê</th>
+                            <th>Ngày Chuyển Đi</th>
                             <th>Mô Tả Thông Tin Người Thuê</th>
                             <th>Trạng Thái</th>
                             <th></th>
@@ -52,6 +54,8 @@
                             <td><?= $people->Full_name; ?></td>
                             <td><?= $people->SCMND; ?></td>
                             <td><?= $people->PhoneNumber; ?></td>
+                            <td><?= $people->RENTER_DAYIN; ?></td>
+                            <td><?= $people->RENTER_DAYOUT; ?></td>
                             <td><?= $people->Decription; ?></td>
 
                             <td>
@@ -124,7 +128,6 @@
     </div>
 </div>
 <script type="text/javascript">
-setTimeout(function(){ $('#show-alert').hide();},3000);
 $('#dynamic-table')
 // .wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
 .DataTable({
@@ -132,12 +135,12 @@ $('#dynamic-table')
     "aoColumns": [{
             "bSortable": false
         },
-        null, null, null, null, null,
+        null, null, null, null, null, null, null,
         {
             "bSortable": false
         }
     ],
-    "aaSorting": [[ 5, "desc" ]],
+    "aaSorting": [[ 7, "desc" ]],
 
 
     //"bProcessing": true,

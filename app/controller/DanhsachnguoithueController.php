@@ -36,7 +36,7 @@ class DanhsachnguoithueController extends Controller
     public function insertRenter()
     {
         $renter = $this->model('NguoithueModel');
-        $filed = ['Full_name' => $_POST['from-field-name-renter'],'SCMND' => $_POST['from-field-scmnd'],'PhoneNumber' => $_POST['from-field-number-phone'],'Decription' => $_POST['form-field-textarea'],'Status' => 0];
+        $filed = ['Full_name' => $_POST['from-field-name-renter'],'SCMND' => $_POST['from-field-scmnd'],'PhoneNumber' => $_POST['from-field-number-phone'],'Decription' => $_POST['form-field-textarea'],'Status' => 0,'RENTER_DAYIN' => date("d/m/Y")];
         $result = $renter->insert($filed);
         if ($result == 'true') {
             $list_people = $renter->get_all();
