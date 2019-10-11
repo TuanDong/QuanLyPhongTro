@@ -47,7 +47,7 @@
                                     </div>
                                 </div>
                                 <div class="widget-toolbox padding-8 clearfix">
-                                    <a class="btn btn-xs btn-primary pull-right " <?= $room->STATUS != 0 ? 'data-toggle="modal" data-target="#modal-caculator"' : 'href="'.url('DanhsachphongthueController/viewAdd',[$room->ID,$room->NUMBER_ELECTRIC,$room->NUMBER_WATER,$curent_page]).'"'; ?> style="border-radius: 6px;" >
+                                    <a class="btn btn-xs btn-primary pull-right " <?= $room->STATUS != 0 ? 'data-toggle="modal" data-target="#modal-caculator" onclick="setID('.$room->ID.','.$room->NUMBER_ELECTRIC .','.$room->NUMBER_WATER.','.$room->PRICE.','.$room->ID_RENTER .');"' : 'href="'.url('DanhsachphongthueController/viewAdd',[$room->ID,$room->NUMBER_ELECTRIC,$room->NUMBER_WATER,$curent_page]).'"'; ?> style="border-radius: 6px;" >
                                         <i class="ace-icon fa fa-credit-card icon-on-right bigger-120"></i>
                                         <span class="bigger-110" style="color:<?= $room->STATUS != 0 ?'': 'red' ?> ;"><?= $room->STATUS != 0 ? 'Tính Tiền' : 'Thuê Phòng' ?></span>
                                     </a>
